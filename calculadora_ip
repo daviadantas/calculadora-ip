@@ -1,0 +1,503 @@
+from os import system
+
+
+system('cls')
+ipv4 = [0, 0, 0, 0]
+while True:
+   for i in range(0, 4):
+       ipv4[i] = int(input('{}° octeto: '.format(i+1)))
+   if ipv4[0] >= 0 and ipv4[0] <= 255 and ipv4[1] >= 0 and ipv4[1] <= 255 and ipv4[2] >= 0 and ipv4[2] <= 255 and ipv4[3] >= 0 and ipv4[3] <= 255:
+       break
+   else:
+       print('Valor inválido\n')
+       continue
+
+
+mask = input("Digite o valor da máscara: ")
+
+
+print('Endereços: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+
+
+if mask == '8':
+   print('Rede: {}.{}.{}.{}'.format(ipv4[0], 0, 0, 0))
+   print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 255))
+   print('Primeiro host: {}.{}.{}.{}'.format(ipv4[0], 0, 0, 1))
+   print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 254))
+   print('hosts: {}'.format(2**24 - 2))
+elif mask == '9':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 129, 128):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 254))
+   print('hosts: {}'.format(2 ** 23 - 2))
+elif mask == '10':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 193, 64):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del(lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 22 - 2))
+elif mask == '11':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 225, 32):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 21 - 2))
+elif mask == '12':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 241, 16):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 20 - 2))
+elif mask == '13':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 249, 8):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 19 - 2))
+elif mask == '14':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 253, 4):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 18 - 2))
+elif mask == '15':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 255, 2):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[1] >= lista_pulos[v] and ipv4[1] < lista_pulo2[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulo2[v] - 1, 255, 254))
+       else:
+           if ipv4[1] >= lista_pulos[v]:
+               ipv4[1] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v], 0, 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], lista_pulos[v] - 1, 255, 254))
+   print('hosts: {}'.format(2 ** 17 - 2))
+elif mask == '16':
+   print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 0, 0))
+   print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 255))
+   print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], 0, 0, 1))
+   print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], 255, 255, 254))
+   print('hosts: {}'.format(2 ** 16 - 2))
+elif mask == '17':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 129, 128):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 15 - 2))
+elif mask == '18':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 193, 64):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 14 - 2))
+elif mask == '19':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 225, 32):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('\nQuantidade de hosts: {}'.format(2 ** 13 - 2))
+elif mask == '20':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 241, 16):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 12 - 2))
+elif mask == '21':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 249, 8):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 11 - 2))
+
+
+elif mask == '22':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 253, 4):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 10 - 2))
+
+
+elif mask == '23':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 255, 2):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[2] >= lista_pulos[v] and ipv4[2] < lista_pulo2[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulo2[v] - 1, 254))
+       else:
+           if ipv4[2] >= lista_pulos[v]:
+               ipv4[2] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], lista_pulos[v], 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], 255, 254))
+   print('hosts: {}'.format(2 ** 9 - 2))
+elif mask == '24':
+   print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 0))
+   print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+   print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 1))
+   print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('Quantidade de hosts: {}'.format(2 ** 8 - 2))
+elif mask == '25':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 129, 128):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 7 - 2))
+elif mask == '26':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 193, 64):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 6 - 2))
+elif mask == '27':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 225, 32):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 5 - 2))
+elif mask == '28':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 241, 16):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 4 - 2))
+elif mask == '29':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 249, 8):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 3 - 2))
+elif mask == '30':
+   lista_pulos = []
+   lista_pulo2 = []
+   for i in range(0, 253, 4):
+       lista_pulos.append(i)
+       lista_pulo2.append(i)
+   del (lista_pulo2[0])
+   for v in range(0, len(lista_pulos)):
+       if v <= len(lista_pulo2) - 1:
+           if ipv4[3] >= lista_pulos[v] and ipv4[3] < lista_pulo2[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 1))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulo2[v] - 2))
+       else:
+           if ipv4[3] >= lista_pulos[v]:
+               ipv4[3] = lista_pulos[v]
+               print('Rede: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], ipv4[3]))
+               print('Broadcast: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 255))
+               print('Primeiro Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], lista_pulos[v] + 1))
+               print('Ultimo Host: {}.{}.{}.{}'.format(ipv4[0], ipv4[1], ipv4[2], 254))
+   print('hosts: {}'.format(2 ** 2 - 2))
